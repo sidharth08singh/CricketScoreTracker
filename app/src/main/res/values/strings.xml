@@ -1,0 +1,52 @@
+<resources>
+    <string name="app_name">CricketScoreKeeper</string>
+    <string name="app_title">Cricket Score Tracker</string>
+    <string name="app_icon">Cricket Score Tracker App Icon</string>
+    <string name="about">About</string>
+    <string name="contact">Contact</string>
+    <string name="football">Football</string>
+    <string name="tennis">Tennis</string>
+    <string-array name="hometeam_array">
+        <item>India</item>
+        <item>Australia</item>
+        <item>England</item>
+        <item>South Africa</item>
+        <item>New Zealand</item>
+        <item>Sri Lanka</item>
+        <item>Pakistan</item>
+        <item>West Indies</item>
+    </string-array>
+    <string-array name="awayteam_array">
+        <item>India</item>
+        <item>Australia</item>
+        <item>England</item>
+        <item>South Africa</item>
+        <item>New Zealand</item>
+        <item>Sri Lanka</item>
+        <item>Pakistan</item>
+        <item>West Indies</item>
+    </string-array>
+    <string-array name="stadium_India">
+        <item>Eden Garden, Kolkata</item>
+        <item>Wankhede, Mumbai</item>
+        <item>Kotla, New Delhi</item>
+        <item>Chinnaswamy, Bangalore</item>
+        <item>Chepauk, Chennai</item>
+        <item>PCA Stadium, Mohali</item>
+    </string-array>
+    <string-array name="stadium_Australia">
+        <item>SCG, Sydney</item>
+        <item>Gabba, Brisbane</item>
+        <item>Adelaide Oval, Adelaide</item>
+        <item>MCG, Melbourne</item>
+        <item>WACA, Perth</item>
+    </string-array>
+    <string-array name="stadium_England">
+        <item>Lords, London</item>
+        <item>Oval, London</item>
+        <item>Headingley, Headingley</item>
+        <item>Rose Bowl, Melbourne</item>
+        <item>WACA, Perth</item>
+    </string-array>
+
+</resources>
