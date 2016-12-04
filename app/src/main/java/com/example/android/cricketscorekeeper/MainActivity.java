@@ -5,14 +5,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.Toast;
+import android.view.View.OnClickListener;
+
 
 import static com.example.android.cricketscorekeeper.R.id.HomeSpinner;
 import static com.example.android.cricketscorekeeper.R.id.VenueSpinner;
 
-public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class MainActivity extends AppCompatActivity {
 
-    public Spinner homeSpinner, awaySpinner, venueSpinner;
+    private Spinner homeSpinner, awaySpinner, venueSpinner;
+    private Button btnStartTrack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,36 +27,49 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
     protected void populateHomeAndAwaySpinners() {
-        // Populate Home Team Spinner
         homeSpinner = (Spinner) findViewById(HomeSpinner);
-        // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.hometeam_array, android.R.layout.simple_spinner_item);
-        // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        // Apply the adapter to the spinner
         homeSpinner.setAdapter(adapter);
-        homeSpinner.setOnItemSelectedListener(this);
+        homeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent, View view,
+                                       int position, long id) {
+                venueSpinner = (Spinner) findViewById(VenueSpinner);
+                String home = parent.getItemAtPosition(position).toString();
+                Toast.makeText(parent.getContext(), home, Toast.LENGTH_SHORT).show();
 
-        // Populate Away Team Spinner
+                populateVenueSpinner(venueSpinner, home);
+            }
+
+            public void onNothingSelected(AdapterView<?> parent) {
+                //@ToDo
+            }
+        });
+
         awaySpinner = (Spinner) findViewById(R.id.AwaySpinner);
-        // Create an ArrayAdapter using the string array and a default spinner layout
         adapter = ArrayAdapter.createFromResource(this,
                 R.array.awayteam_array, android.R.layout.simple_spinner_item);
-        // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        // Apply the adapter to the spinner
         awaySpinner.setAdapter(adapter);
+
+        addListenerOnButton(homeSpinner, awaySpinner, venueSpinner);
     }
 
+    protected void addListenerOnButton(final Spinner homeSpinner, final Spinner awaySpinner, final Spinner venueSpinner) {
+        Button btnStartTrack = (Button) findViewById(R.id.track_btn);
+        btnStartTrack.setOnClickListener(new OnClickListener() {
 
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(v.getContext(),
+                        "Selected All",
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 
-    public void onItemSelected(AdapterView<?> parent, View view,
-                               int pos, long id) {
-        // An item was selected. You can retrieve the selected item using
-        // parent.getItemAtPosition(pos)
-        venueSpinner = (Spinner) findViewById(VenueSpinner);
-        String home = homeSpinner.getSelectedItem().toString();
+    protected void populateVenueSpinner(Spinner venueSpinner, String home) {
         ArrayAdapter<CharSequence> adapter = null;
         switch(home) {
             case "India":
@@ -85,9 +103,5 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         }
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         venueSpinner.setAdapter(adapter);
-    }
-
-    public void onNothingSelected(AdapterView<?> parent) {
-        // Another interface callback
     }
 }
